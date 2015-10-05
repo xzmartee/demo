@@ -1,0 +1,3 @@
+24 threads (pthreads): 0.499999 (9.1287e-07): 7.991938e+01 s, 100000240000 trials
+24 threads (pthreads): 0.499999 (9.1287e-07): 6.528193e+01 s, 100000480000 trials
+24 threads (pthreads): 0.499999 (9.12871e-07): 6.515240e+01 s, 100000120000 trials
