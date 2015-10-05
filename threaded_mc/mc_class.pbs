@@ -1,5 +1,6 @@
 #!/bin/sh
 
+<<<<<<< HEAD
 # This simple Portable Batch System (PBS) script runs the UNIX hostname command
 # on a single node and sends the output to a file hostname.oXX, where XX is the
 # job number.  The comment lines beginning with PBS below specify job options;
@@ -14,4 +15,17 @@ cd $PBS_O_WORKDIR
 ./pthread_mc.x -p 24 -t 1e-8 -b 10000 -n 100000000000
 ./pthread_mc.x -p 24 -t 1e-8 -b 20000 -n 100000000000
 ./pthread_mc.x -p 24 -t 1e-8 -b 5000 -n 100000000000
+=======
+#PBS -N mc_compare
+#PBS -j oe
+#PBS -M your_net_id@cornell.edu
+
+cd $PBS_O_WORKDIR
+
+module load cs5220
+
+./pthread_mc.x -p 24 -t 1e-8 -b 10000 -n 10000000000
+./pthread_mc.x -p 24 -t 1e-8 -b 20000 -n 10000000000
+./pthread_mc.x -p 24 -t 1e-8 -b  5000 -n 10000000000
+>>>>>>> upstream/master
 

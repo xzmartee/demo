@@ -1,4 +1,4 @@
-/* omp_mc.c --
+/* omp_offload_mc.c --
  *
  * This code is a prototype Monte Carlo computation (though right now
  * it simply computes the expected value of the uniform generator,
@@ -11,9 +11,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
-#include <sys/time.h>
-#include <omp.h>
 
+#pragma offload_attribute(push,target(mic)) //{
+
+#include <omp.h>
 #include "mt19937p.h"
 #include "common_mc.h"
 
@@ -40,6 +41,8 @@ void thread_main(mc_result_t* result, mc_param_t* param, long seed)
     }
 }
 
+#pragma offload_attribute(pop) //}
+
 
 int main(int argc, char** argv)
 {
@@ -53,8 +56,9 @@ int main(int argc, char** argv)
     nthreads = process_args(argc, argv, &param);
     if (nthreads == 0)
         omp_set_num_threads(nthreads);
-
+    
     t1 = omp_get_wtime();
+    #pragma offload target(mic)
     #pragma omp parallel shared(result, param, nthreads) private(seed)
     {
         #pragma omp single
